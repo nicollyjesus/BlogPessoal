@@ -1,7 +1,6 @@
 package com.generation.blogpessoal.security;
  
 import java.io.IOException;
- 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
@@ -72,5 +71,5 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             throw new RuntimeException("Usuário não pode ser extraído do token JWT");
         }
     }
- 
 }
+ 

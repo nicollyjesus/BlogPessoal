@@ -3,7 +3,7 @@ package com.generation.blogpessoal.util;
 import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.model.UsuarioLogin;
 
-public class TestBuilder {
+public class TesteBuilder {
 
 	public static Usuario criarUsuario(Long id, String nome, String usuario, String senha) {
 		Usuario novoUsuario = new Usuario();
@@ -11,6 +11,7 @@ public class TestBuilder {
 		novoUsuario.setNome(nome);
 		novoUsuario.setUsuario(usuario);
 		novoUsuario.setSenha(senha);
+		novoUsuario.setFoto("-");
 		return novoUsuario;
 	}
 	
@@ -20,7 +21,4 @@ public class TestBuilder {
 		novoUsuarioLogin.setSenha(senha);
 		return novoUsuarioLogin;
 	}
-	
-	
-	
 }
