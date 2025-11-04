@@ -8,18 +8,25 @@ import io.github.cdimascio.dotenv.Dotenv;
 @SpringBootApplication
 public class BlogpessoalApplication {
 
-	public static void main(String[] args) {
-		
+    public static void main(String[] args) {
+        try {
+            // Carrega .env apenas se existir (modo local)
+            Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
-		try {
-			Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
-		
-			dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue()));
-		} catch (Exception e) {
-			System.out.println("Running without .env file - using environment variables");
-}
-		
-		SpringApplication.run(BlogpessoalApplication.class, args);
-	}
+            // Adiciona variáveis locais se não existirem no ambiente
+            dotenv.entries().forEach(entry -> {
+                if (System.getenv(entry.getKey()) == null) {
+                    System.setProperty(entry.getKey(), entry.getValue());
+                }
+            });
+
+            System.out.println(" Variáveis carregadas (modo local)");
+        } catch (Exception e) {
+            System.out.println(" Nenhum arquivo .env encontrado (modo produção)");
+        }
+
+
+        SpringApplication.run(BlogpessoalApplication.class, args);
+    }
 
 }
